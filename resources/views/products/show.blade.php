@@ -37,25 +37,22 @@
                     <div class="col-md-6 col-md-offset-3">
                         <div class="profile-tabs">
                             <div class="nav-align-center">
-                                <div class="tab-content gallery">
-                                    <div class="tab-pane active" id="studio">
-                                        <div class="row">
-
-                                            <div class="col-md-6">
-                                                @foreach($imagesLeft as $image)
+                            <div class="tab-content gallery">
+                                <div class="tab-pane active" id="studio">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            @foreach ($imagesLeft as $image)
                                                 <img src="{{ $image->url }}" class="img-rounded" />
-                                                @endforeach
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                @foreach($imagesRigth as $image)
+                                            @endforeach
+                                        </div>
+                                        <div class="col-md-6">
+                                            @foreach ($imagesRight as $image)
                                                 <img src="{{ $image->url }}" class="img-rounded" />
-                                                @endforeach
-                                            </div>
-
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                             </div>
                         </div>
                         <!-- End Profile Tabs -->
