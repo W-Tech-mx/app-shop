@@ -4,7 +4,6 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Cart;
 
 class User extends Authenticatable
 {
@@ -16,8 +15,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
-    ];
+        'name', 'email', 'password', 'phone', 'address', 'username'
+    ]; // admin => true
 
     /**
      * The attributes that should be hidden for arrays.
@@ -28,12 +27,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-
     public function carts()
     {
         return $this->hasMany(Cart::class);
     }
-
 
     // cart_id
     public function getCartAttribute()

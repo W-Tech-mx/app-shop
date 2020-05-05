@@ -19,32 +19,53 @@
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2">
                             <h2 class="title">Editae Producto seleccionado</h2>
-                          <form method="post" action="{{ url('/admin/products/'.$product->id.'/edit') }}">
-                            {{ csrf_field()}}
-                            <div class="col-sm-4 p-3">
-                                <div class="form-group">
-                                    <input type="text" name="name"  placeholder="Nombre Producto" value="{{ $product->name }}" class="form-control" />
-                                </div>
-                            </div>
+                                <form method="post" action="{{ url('/admin/products/'.$product->id.'/edit') }}">
+                                    {{ csrf_field() }}
 
-                            <div class="col-sm-4 p-3">
-                                <div class="form-group label-floating">
-                                    <label class="control-label">Descripcion corta</label>
-                                    <input  class="form-control" type="text" name="description" value="{{ $product->description }}">
-                                </div>
-                            </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Nombre del producto</label>
+                                                <input type="text" class="form-control" name="name" value="{{ old('name', $product->name) }}">
+                                            </div>
+                                        </div>
 
-                            <div class="col-sm-4 p-3">
-                                <div class="form-group label-floating">
-                                    <label class="control-label">Precio</label>
-                                    <input type="number" step="0.01" name="price" value="{{ $product->price }}" class="form-control">
-                                </div>
-                            </div><br><br>
-                            <div class="col-auto p-5">
-                                <textarea class="form-control" placeholder="descripcion del producto"  name="long_description">{{ $product->long_description }}</textarea>
-                            <button class="btn btn-warning">Guardar Cambio Producto</button>
-                             <a href="{{ url('admin/products') }}" class="btn btn-primary">Cancelar</a>
-                          </form>
+                                        <div class="col-sm-6">
+                                            <div class="form-group label-floating">
+                                            <label class="control-label">Precio del producto</label>
+                                            <input type="number" step="0.01" class="form-control" name="price" value="{{ old('price', $product->price) }}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                             <div class="form-group label-floating">
+                                                <label class="control-label">Descripción corta</label>
+                                                <input type="text" class="form-control" name="description" value="{{ old('description', $product->description) }}">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Categoría del producto</label>
+                                                <select class="form-control" name="category_id">
+                                                    <option value="0">General</option>
+                                                    @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}" @if($category->id == old('category_id', $product->category_id)) selected @endif>
+                                                        {{ $category->name }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <textarea class="form-control" placeholder="Descripción extensa del producto" rows="5" name="long_description">{{ old('long_description', $product->long_description) }}</textarea>
+
+                                    <button class="btn btn-primary">Guardar cambios</button>
+                                    <a href="{{ url('/admin/products') }}" class="btn btn-default">Cancelar</a>
+                                </form>
                         </div>
                     </div>
 
